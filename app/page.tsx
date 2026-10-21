@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Certification } from "@/components/certification";
+import { OctoberRoseBanner, OctoberRoseCampaign } from "@/components/october-rose";
 import { Audience, ContactLink, FAQ, Header, Icon, Logo, Motion } from "@/components/interactive";
 
 const steps = [
@@ -13,7 +14,7 @@ export default function Home() {
   const ely = "/images/Logo - Ely Transparente.jpeg";
   const jp = "/images/Logo - JPCreative Transparente.jpeg";
   return <>
-    <Motion /><Header logo={ely} />
+    <Motion /><OctoberRoseBanner /><Header logo={ely} />
     <main id="conteudo">
       <section className="hero" id="inicio" aria-labelledby="hero-title">
         <div className="hero-lines" aria-hidden="true"><span /><span /><span /><span /></div>
@@ -34,6 +35,7 @@ export default function Home() {
       <section className="about section-pad" id="sobre" aria-labelledby="about-title"><div className="section-label"><span className="small-line" /> Quem acolhe a sua história</div><div className="about-grid"><div className="about-name" data-reveal="lines"><h2 id="about-title">Ely<br /><em>Oliveira.</em></h2><span>Terapeuta Emocional TRG</span><Image className="ely-portrait" src="/images/img2.jpeg" alt="Ely Oliveira em seu retrato profissional" width={1099} height={1431} sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 40vw, 420px" /></div><div className="about-copy" data-reveal><h3>Técnica e presença.<br />Escuta e cuidado.</h3><p>Meu trabalho reúne a Terapia de Reprocessamento Generativo, a escuta ativa e uma presença genuína para acolher sua história.</p><p>O acompanhamento se volta à raiz das emoções e aos padrões emocionais, respeitando a singularidade de cada pessoa.</p><div className="qualification"><Icon name="patch-check" /><p>Certificação em TRG pelo<br /><strong>Instituto de Ensino e Terapia do Brasil.</strong></p></div><p className="about-small">Atendimento online para crianças, jovens e adultos.</p></div></div></section>
 
       <Certification />
+      <OctoberRoseCampaign />
 
       <section className="trg section-pad" id="trg" aria-labelledby="trg-title"><div className="trg-heading"><div><div className="section-label"><span className="small-line" /> A abordagem</div><h2 id="trg-title" data-reveal="lines">Olhar para a raiz.<br /><em>Acolher o que sente.</em></h2></div><span className="trg-monogram" aria-hidden="true">TRG</span></div><div className="trg-body"><h3>O que é TRG?</h3><div><p>A Terapia de Reprocessamento Generativo é a abordagem utilizada por Ely no trabalho com emoções e padrões emocionais.</p><p>Na proposta apresentada pela profissional, o processo envolve olhar para a raiz dessas emoções, com técnica, escuta e acolhimento.</p><p className="muted">A primeira conversa é um espaço para entender a abordagem e esclarecer suas dúvidas. Cada processo é individual, sem promessa de resultados iguais para todos.</p></div></div><div className="trg-path" data-reveal><span><Icon name="ear" /> Escutar</span><span><Icon name="search-heart" /> Compreender</span><span><Icon name="heart" /> Acolher</span></div></section>
 
@@ -43,7 +45,7 @@ export default function Home() {
 
       <section className="online section-pad" aria-labelledby="online-title"><div className="online-title" data-reveal="lines"><span className="section-label">Perto, mesmo à distância</span><h2 id="online-title">O cuidado chega<br /><em>até você.</em></h2></div><div className="online-content"><p className="online-lead">100% online.<br />Em todo o Brasil.</p><p>Um encontro que cabe na sua rotina, em um lugar onde você se sinta confortável para conversar.</p><ul><li><Icon name="house-heart" /><span>Conforto do seu espaço</span></li><li><Icon name="shield-lock" /><span>Um ambiente reservado por você</span></li><li><Icon name="wifi" /><span>Facilidade de acesso, onde estiver</span></li></ul><small>Para as sessões, escolha um local privado e uma conexão estável.</small></div></section>
 
-      <section className="investment section-pad" aria-labelledby="investment-title"><div><div className="section-label"><span className="small-line" /> Investimento no seu cuidado</div><h2 id="investment-title" data-reveal="lines">Clareza também<br />é <em>acolhimento.</em></h2><p>Informações para você decidir com tranquilidade.</p></div><div className="investment-values"><div className="price-row"><span>Triagem / anamnese</span><p><small>R$</small> 100</p></div><div className="price-row"><span>Sessão individual</span><p><small>R$</small> 300</p></div><div className="package-note"><Icon name="journal-check" /><div><strong>Pacote com 10% de desconto</strong><p>Possibilidade de 5 + 5 sessões.<br />Converse com a Ely sobre a organização do pacote.</p></div></div><p className="payment"><Icon name="credit-card" /> Até 3x sem juros no cartão.<br /><span>Acima disso, juros da operadora/maquininha.</span></p></div></section>
+      <section className="investment section-pad" aria-labelledby="investment-title"><div><div className="section-label"><span className="small-line" /> Investimento no seu cuidado</div><h2 id="investment-title" data-reveal="lines">Clareza também<br />é <em>acolhimento.</em></h2><p>Informações para você decidir com tranquilidade.</p></div><div className="investment-values"><div className="price-row"><span>Sessão individual</span><p><small>R$</small> 300</p></div><div className="package-note"><Icon name="journal-check" /><div><strong>Pacote com 10% de desconto</strong><p>Possibilidade de 5 + 5 sessões.<br />Converse com a Ely sobre a organização do pacote.</p></div></div><p className="payment"><Icon name="credit-card" /> Até 3x sem juros no cartão.<br /><span>Acima disso, juros da operadora/maquininha.</span></p></div></section>
 
       <section className="faq section-pad" id="duvidas" aria-labelledby="faq-title"><div className="faq-heading"><div className="section-label"><span className="small-line" /> Dúvidas, com calma</div><h2 id="faq-title">Antes do<br /><em>primeiro passo.</em></h2><p>Algumas respostas que podem<br />ajudar você a começar.</p></div><FAQ /></section>
 

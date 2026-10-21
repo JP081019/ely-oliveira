@@ -7,8 +7,9 @@ export const whatsapp = "https://wa.me/553197779876?text=" + encodeURIComponent(
 export function Icon({ name, className = "" }: { name: string; className?: string }) {
   return <i className={`bi bi-${name} ${className}`} aria-hidden="true" />;
 }
-export function ContactLink({ children, className = "", label }: { children: React.ReactNode; className?: string; label?: string }) {
-  return <a href={whatsapp} target="_blank" rel="noopener noreferrer" className={className} aria-label={label}>{children}</a>;
+export function ContactLink({ children, className = "", label, message }: { children: React.ReactNode; className?: string; label?: string; message?: string }) {
+  const href = message ? `${whatsapp.split("?")[0]}?text=${encodeURIComponent(message)}` : whatsapp;
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className} aria-label={label}>{children}</a>;
 }
 export function Logo({ src, brand }: { src: string | null; brand: "Ely" | "JP Creative" }) {
   return src ? <Image src={src} width={brand === "Ely" ? 1536 : 1774} height={brand === "Ely" ? 1024 : 887} sizes={brand === "Ely" ? "(max-width: 600px) 150px, 190px" : "160px"} alt={brand === "Ely" ? "Ely Oliveira" : "JP Creative"} className={`brand-image ${brand === "Ely" ? "ely-image" : "jp-image"}`} /> : <span className="logo-placeholder">Logo {brand} — inserir arquivo</span>;
@@ -144,9 +145,9 @@ export function Audience() {
 const questions = [
   ["Como funciona o atendimento online?", "O atendimento é 100% online, para pessoas em todo o Brasil. Escolha um lugar confortável e reservado, com acesso à internet. Os detalhes para participar das sessões são combinados com a Ely."],
   ["Quem pode fazer o acompanhamento?", "Crianças, jovens e adultos. Para menores de 18 anos, é necessária autorização dos responsáveis."],
-  ["Como funciona a primeira conversa?", "O primeiro contato acontece pelo WhatsApp, para esclarecer dúvidas e combinar os próximos passos. A triagem/anamnese é uma etapa do processo e tem o valor de R$ 100."],
+  ["Como funciona a primeira conversa?", "O primeiro contato acontece pelo WhatsApp, para esclarecer dúvidas e combinar os próximos passos. A triagem/anamnese é uma etapa do processo."],
   ["Como funciona a terapia de casal?", "O acompanhamento informado pela Ely acontece individualmente com cada parceiro. Na primeira conversa, ela explica como esse processo é organizado."],
-  ["Como funciona o pagamento?", "A sessão individual custa R$ 300 e a triagem/anamnese, R$ 100. Há pacote com 10% de desconto e possibilidade de 5 + 5 sessões. O cartão pode ser parcelado em até 3x sem juros; acima disso, há juros da operadora/maquininha. Os detalhes do pacote são combinados com a Ely."],
+  ["Como funciona o pagamento?", "A sessão individual custa R$ 300. Há pacote com 10% de desconto e possibilidade de 5 + 5 sessões. O cartão pode ser parcelado em até 3x sem juros; acima disso, há juros da operadora/maquininha. Os detalhes do pacote são combinados com a Ely."],
   ["Preciso conhecer TRG antes de começar?", "Não é necessário conhecer a abordagem previamente. Você pode conversar com a Ely, tirar suas dúvidas e entender a proposta do acompanhamento antes de decidir."],
 ];
 export function FAQ() {

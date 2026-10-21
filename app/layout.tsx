@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree, Instrument_Serif, Dancing_Script } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./globals.css";
+import { octoberRoseCampaign } from "@/lib/campaigns";
 
 const figtree = Figtree({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 const instrument = Instrument_Serif({ weight: "400", style: ["normal", "italic"], subsets: ["latin"], variable: "--font-display", display: "swap" });
@@ -20,5 +21,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body className={`${figtree.variable} ${instrument.variable} ${dancing.variable}`}>{children}</body></html>;
+  return <html lang="pt-BR"><body className={`${figtree.variable} ${instrument.variable} ${dancing.variable}${octoberRoseCampaign.enabled ? " october-rose-active" : ""}`}>{children}</body></html>;
 }
