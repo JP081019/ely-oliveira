@@ -1,6 +1,14 @@
 import Image from "next/image";
 import { Certification } from "@/components/certification";
-import { OctoberRoseBanner, OctoberRoseCampaign } from "@/components/october-rose";
+import type { Metadata } from "next";
+import { CookiePreferences } from "@/components/site-analytics";
+
+export const metadata: Metadata = { alternates: { canonical: "https://www.terapiaely.com.br/" } };
+
+const structuredData = { "@context": "https://schema.org", "@graph": [
+  { "@type": "Person", "@id": "https://www.terapiaely.com.br/#ely", name: "Ely Maria Barbosa de Oliveira", alternateName: "Ely Oliveira", jobTitle: "Terapeuta Emocional TRG", url: "https://www.terapiaely.com.br/" },
+  { "@type": "WebSite", "@id": "https://www.terapiaely.com.br/#website", url: "https://www.terapiaely.com.br/", name: "Ely Oliveira", inLanguage: "pt-BR", about: { "@id": "https://www.terapiaely.com.br/#ely" } }
+] };
 import { Audience, ContactLink, FAQ, Header, Icon, Logo, Motion } from "@/components/interactive";
 
 const steps = [
@@ -12,15 +20,16 @@ const steps = [
 
 export default function Home() {
   const ely = "/images/Logo - Ely Transparente.jpeg";
-  const jp = "/images/Logo - JPCreative Transparente.jpeg";
+  const jp = "/images/Identidade Minimalista JP Creative.png";
   return <>
-    <Motion /><OctoberRoseBanner /><Header logo={ely} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+    <Motion /><Header logo={ely} />
     <main id="conteudo">
       <section className="hero" id="inicio" aria-labelledby="hero-title">
         <div className="hero-lines" aria-hidden="true"><span /><span /><span /><span /></div>
         <div className="hero-topline"><span>Terapia emocional · TRG</span><span>Um espaço de escuta. Um tempo para você.</span></div>
         <div className="hero-composition"><h1 id="hero-title"><span className="hero-line">Reconecte-se</span><span className="hero-line hero-second">com a sua</span><span className="hero-line hero-third">saúde emocional<span className="hero-period">.</span></span></h1><figure className="hero-portrait" data-reveal><Image src="/images/img1.jpeg" alt="Ely Oliveira, com identificação de terapeuta certificada TRG" width={1024} height={1536} sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 38vw, 360px" preload /></figure></div>
-        <div className="hero-bottom"><p>Há caminhos para compreender o que você sente.<br className="desktop-break" /> E você pode percorrê-los com acolhimento.</p><div className="hero-actions"><ContactLink className="button button-light"><span>Quero conversar com a Ely</span><Icon name="arrow-up-right" /></ContactLink><a className="text-link" href="#atendimento">Entender como funciona <Icon name="arrow-down" /></a></div></div>
+        <div className="hero-bottom"><p>Há caminhos para compreender o que você sente.<br className="desktop-break" /> E você pode percorrê-los com acolhimento.</p><div className="hero-actions"><ContactLink location="hero" className="button button-light"><span>Quero conversar com a Ely</span><Icon name="arrow-up-right" /></ContactLink><a className="text-link" href="#atendimento">Entender como funciona <Icon name="arrow-down" /></a></div></div>
         <div className="hero-foot"><span><Icon name="geo-alt" /> 100% online · Em todo o Brasil</span><a href="#identificacao" aria-label="Continuar para a próxima seção">Permita-se um primeiro passo <Icon name="arrow-down" /></a></div>
       </section>
 
@@ -32,10 +41,10 @@ export default function Home() {
 
       <section className="statement" aria-labelledby="statement-title"><div className="statement-line" aria-hidden="true" /><p className="section-label">Há espaço para novos caminhos</p><h2 id="statement-title" data-reveal="clip">O que você sente hoje<br />não precisa ser<br /><em>pra sempre.</em></h2><span className="handwritten" data-reveal>um passo de cada vez</span></section>
 
-      <section className="about section-pad" id="sobre" aria-labelledby="about-title"><div className="section-label"><span className="small-line" /> Quem acolhe a sua história</div><div className="about-grid"><div className="about-name" data-reveal="lines"><h2 id="about-title">Ely<br /><em>Oliveira.</em></h2><span>Terapeuta Emocional TRG</span><Image className="ely-portrait" src="/images/img2.jpeg" alt="Ely Oliveira em seu retrato profissional" width={1099} height={1431} sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 40vw, 420px" /></div><div className="about-copy" data-reveal><h3>Técnica e presença.<br />Escuta e cuidado.</h3><p>Meu trabalho reúne a Terapia de Reprocessamento Generativo, a escuta ativa e uma presença genuína para acolher sua história.</p><p>O acompanhamento se volta à raiz das emoções e aos padrões emocionais, respeitando a singularidade de cada pessoa.</p><div className="qualification"><Icon name="patch-check" /><p>Certificação em TRG pelo<br /><strong>Instituto de Ensino e Terapia do Brasil.</strong></p></div><p className="about-small">Atendimento online para crianças, jovens e adultos.</p></div></div></section>
+      <section className="about section-pad" id="sobre" aria-labelledby="about-title"><div className="section-label"><span className="small-line" /> Quem acolhe a sua história</div><div className="about-grid"><div className="about-name" data-reveal="lines"><h2 id="about-title">Ely<br /><em>Oliveira.</em></h2><span>Terapeuta Emocional TRG</span><Image className="ely-portrait" src="/images/img2.jpeg" alt="Ely Oliveira em seu retrato profissional" width={1099} height={1431} sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 900px) 40vw, 420px" /></div><div className="about-copy" data-reveal><h3>Técnica e presença.<br />Escuta e cuidado.</h3><p>Meu trabalho reúne a Terapia de Reprocessamento Generativo, a escuta ativa e uma presença genuína para acolher sua história.</p><p>O acompanhamento se volta à raiz das emoções e aos padrões emocionais, respeitando a singularidade de cada pessoa.</p><div className="qualification"><Icon name="patch-check" /><p>Certificação em TRG pelo<br /><strong>IBFT e IETRG.</strong></p></div><p className="about-small">Atendimento online para crianças, jovens e adultos.</p></div></div></section>
 
       <Certification />
-      <OctoberRoseCampaign />
+
 
       <section className="trg section-pad" id="trg" aria-labelledby="trg-title"><div className="trg-heading"><div><div className="section-label"><span className="small-line" /> A abordagem</div><h2 id="trg-title" data-reveal="lines">Olhar para a raiz.<br /><em>Acolher o que sente.</em></h2></div><span className="trg-monogram" aria-hidden="true">TRG</span></div><div className="trg-body"><h3>O que é TRG?</h3><div><p>A Terapia de Reprocessamento Generativo é a abordagem utilizada por Ely no trabalho com emoções e padrões emocionais.</p><p>Na proposta apresentada pela profissional, o processo envolve olhar para a raiz dessas emoções, com técnica, escuta e acolhimento.</p><p className="muted">A primeira conversa é um espaço para entender a abordagem e esclarecer suas dúvidas. Cada processo é individual, sem promessa de resultados iguais para todos.</p></div></div><div className="trg-path" data-reveal><span><Icon name="ear" /> Escutar</span><span><Icon name="search-heart" /> Compreender</span><span><Icon name="heart" /> Acolher</span></div></section>
 
@@ -49,9 +58,9 @@ export default function Home() {
 
       <section className="faq section-pad" id="duvidas" aria-labelledby="faq-title"><div className="faq-heading"><div className="section-label"><span className="small-line" /> Dúvidas, com calma</div><h2 id="faq-title">Antes do<br /><em>primeiro passo.</em></h2><p>Algumas respostas que podem<br />ajudar você a começar.</p></div><FAQ /></section>
 
-      <section className="final-cta section-pad" id="contato" aria-labelledby="contact-title"><div className="cta-top"><span className="section-label">Um convite ao cuidado</span><span className="handwritten">você merece esse espaço.</span></div><div className="contact-composition"><h2 id="contact-title" data-reveal="clip">Cuidar de você<br /><em>por inteiro.</em></h2><figure className="contact-portrait" data-reveal><Image src="/images/img4.jpeg" alt="Ely Oliveira ao lado da mensagem: Cuidando de você por inteiro" width={1099} height={1431} sizes="(max-width: 600px) 240px, 280px" /></figure></div><div className="cta-bottom"><p>Podemos começar com uma conversa.<br />Estou aqui para ouvir.</p><ContactLink className="button button-light"><span>Conversar com a Ely</span><Icon name="whatsapp" /></ContactLink></div></section>
+      <section className="final-cta section-pad" id="contato" aria-labelledby="contact-title"><div className="cta-top"><span className="section-label">Um convite ao cuidado</span><span className="handwritten">você merece esse espaço.</span></div><div className="contact-composition"><h2 id="contact-title" data-reveal="clip">Cuidar de você<br /><em>por inteiro.</em></h2><figure className="contact-portrait" data-reveal><Image src="/images/img4.jpeg" alt="Ely Oliveira ao lado da mensagem: Cuidando de você por inteiro" width={1024} height={1536} sizes="(max-width: 600px) 240px, 280px" /></figure></div><div className="cta-bottom"><p>Podemos começar com uma conversa.<br />Estou aqui para ouvir.</p><ContactLink className="button button-light"><span>Conversar com a Ely</span><Icon name="whatsapp" /></ContactLink></div></section>
     </main>
-    <footer className="footer"><div className="footer-main"><div><a href="#inicio" className="brand" aria-label="Ely Oliveira — início"><Logo src={ely} brand="Ely" /></a><p>Ely Oliveira · Terapeuta Emocional TRG<br />Atendimento online em todo o Brasil.</p></div><div className="footer-contact"><ContactLink>+55 31 9777-9876 <Icon name="arrow-up-right" /></ContactLink><span>Atendimento para crianças, jovens e adultos.<br />Menores de 18 anos: autorização dos responsáveis.</span></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Ely Oliveira</span><a href="https://jpcreative.com.br" target="_blank" rel="noopener noreferrer" className="credits"><span>Desenvolvido por JP Creative</span><Logo src={jp} brand="JP Creative" /><Icon name="arrow-up-right" /></a></div></footer>
-    <ContactLink className="floating-whatsapp" label="Conversar com Ely Oliveira pelo WhatsApp (abre em nova aba)"><span>Vamos conversar</span><Icon name="whatsapp" /></ContactLink>
+    <footer className="footer"><div className="footer-main"><div><a href="#inicio" className="brand" aria-label="Ely Oliveira — início"><Logo src={ely} brand="Ely" /></a><p>Ely Oliveira · Terapeuta Emocional TRG<br />Atendimento online em todo o Brasil.</p></div><div className="footer-contact"><ContactLink location="footer">+55 31 9777-9876 <Icon name="arrow-up-right" /></ContactLink><span>Atendimento para crianças, jovens e adultos.<br />Menores de 18 anos: autorização dos responsáveis.</span></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Ely Oliveira</span><div className="footer-privacy"><a href="/privacidade">Política de privacidade</a><CookiePreferences /></div><a href="https://jpcreative.com.br" target="_blank" rel="noopener noreferrer" className="credits"><span>Desenvolvido por JP Creative</span><Logo src={jp} brand="JP Creative" /><Icon name="arrow-up-right" /></a></div></footer>
+    <ContactLink location="floating" className="floating-whatsapp" label="Conversar com Ely Oliveira pelo WhatsApp (abre em nova aba)"><span>Vamos conversar</span><Icon name="whatsapp" /></ContactLink>
   </>;
 }

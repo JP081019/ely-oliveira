@@ -7,6 +7,7 @@ const base = process.env.SITE_URL || 'http://127.0.0.1:3016';
   try {
     for (const width of process.env.REVEAL_WIDTHS ? process.env.REVEAL_WIDTHS.split(',').map(Number) : [320, 390, 768, 1440]) {
       const page = await browser.newPage({ viewport: { width, height: 844 }, reducedMotion: 'no-preference' });
+      await page.route('**/_vercel/insights/script.js', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
       await page.goto(base, { waitUntil: 'networkidle' });
       await page.waitForFunction(() => document.documentElement.classList.contains('motion-ready'));
       const elements = page.locator('[data-reveal]');

@@ -2,17 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { trackWhatsApp, type ContactLocation } from "@/lib/analytics";
 
 export const whatsapp = "https://wa.me/553197779876?text=" + encodeURIComponent("Olá, Ely! Vim pelo site e gostaria de saber mais sobre a terapia.");
 export function Icon({ name, className = "" }: { name: string; className?: string }) {
   return <i className={`bi bi-${name} ${className}`} aria-hidden="true" />;
 }
-export function ContactLink({ children, className = "", label, message }: { children: React.ReactNode; className?: string; label?: string; message?: string }) {
+export function ContactLink({ children, className = "", label, message, location = "services" }: { children: React.ReactNode; className?: string; label?: string; message?: string; location?: ContactLocation }) {
   const href = message ? `${whatsapp.split("?")[0]}?text=${encodeURIComponent(message)}` : whatsapp;
-  return <a href={href} target="_blank" rel="noopener noreferrer" className={className} aria-label={label}>{children}</a>;
+  return <a href={href} target="_blank" rel="noopener noreferrer" className={className} aria-label={label} onClick={() => trackWhatsApp(location, location === "floating" ? "floating" : "contact")}>{children}</a>;
 }
 export function Logo({ src, brand }: { src: string | null; brand: "Ely" | "JP Creative" }) {
-  return src ? <Image src={src} width={brand === "Ely" ? 1536 : 1774} height={brand === "Ely" ? 1024 : 887} sizes={brand === "Ely" ? "(max-width: 600px) 150px, 190px" : "160px"} alt={brand === "Ely" ? "Ely Oliveira" : "JP Creative"} className={`brand-image ${brand === "Ely" ? "ely-image" : "jp-image"}`} /> : <span className="logo-placeholder">Logo {brand} — inserir arquivo</span>;
+  return src ? <Image src={src} width={brand === "Ely" ? 1536 : 2172} height={brand === "Ely" ? 1024 : 724} sizes={brand === "Ely" ? "(max-width: 600px) 150px, 190px" : "160px"} alt={brand === "Ely" ? "Ely Oliveira" : "JP Creative"} className={`brand-image ${brand === "Ely" ? "ely-image" : "jp-image"}`} /> : <span className="logo-placeholder">Logo {brand} — inserir arquivo</span>;
 }
 const nav = [["Início", "inicio"], ["Sobre", "sobre"], ["TRG", "trg"], ["Atendimento", "atendimento"], ["Dúvidas", "duvidas"], ["Contato", "contato"]];
 
@@ -37,7 +38,7 @@ export function Header({ logo }: { logo: string | null }) {
     <header className={`header ${compact ? "compact" : ""}`}>
       <a href="#inicio" className="brand" aria-label="Ely Oliveira — início"><Logo src={logo} brand="Ely" /></a>
       <nav className="desktop-nav" aria-label="Navegação principal">{nav.slice(0, 5).map(([text, id]) => <a key={id} href={`#${id}`}>{text}</a>)}</nav>
-      <ContactLink className="header-contact">Vamos conversar <Icon name="arrow-up-right" /></ContactLink>
+      <ContactLink location="header" className="header-contact">Vamos conversar <Icon name="arrow-up-right" /></ContactLink>
       <button ref={trigger} className="menu-toggle" aria-label="Abrir menu" aria-expanded={open} aria-controls="menu-mobile" onClick={() => { dialog.current?.showModal(); setOpen(true); }}><Icon name="list" /></button>
     </header>
     <dialog ref={dialog} id="menu-mobile" className="mobile-menu" aria-label="Menu de navegação" onClose={() => { setOpen(false); trigger.current?.focus(); }} onClick={(e) => { if (e.target === dialog.current) close(); }}>

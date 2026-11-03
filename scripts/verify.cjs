@@ -7,6 +7,8 @@ catch { playwright = createRequire(process.env.PLAYWRIGHT_PACKAGE || 'C:/Users/j
 (async () => {
   const browser = await playwright.chromium.launch({ headless: true, channel: 'chrome' });
   const page = await browser.newPage();
+  // Vercel serves this endpoint only after deployment and dashboard activation.
+  await page.route('**/_vercel/insights/script.js', route => route.fulfill({ contentType: 'application/javascript', body: '' }));
   const errors = [];
   page.on('response', response => { if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
   page.on('pageerror', error => errors.push(error.message));
@@ -14,6 +16,7 @@ catch { playwright = createRequire(process.env.PLAYWRIGHT_PACKAGE || 'C:/Users/j
   const response = await page.goto(process.env.SITE_URL || 'http://127.0.0.1:3016', { waitUntil: 'networkidle' });
   assert.equal(response.status(), 200);
   await page.evaluate(() => document.fonts.ready);
+  await page.getByRole('button', { name: 'Recusar', exact: true }).click();
   await page.waitForFunction(() => document.documentElement.classList.contains('motion-ready'), null, { timeout: 10000 }).catch(error => { throw new Error(`Hydration: ${errors.join('; ')}; ${error.message}`); });
   assert.equal(await page.locator('h1').count(), 1);
   assert.equal(await page.locator('html').getAttribute('lang'), 'pt-BR');
@@ -36,8 +39,8 @@ catch { playwright = createRequire(process.env.PLAYWRIGHT_PACKAGE || 'C:/Users/j
     console.log(`PASS viewport ${width}px: no horizontal overflow`);
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  const imageInfo = await page.locator('img').evaluateAll(images => images.map(img => ({ alt: img.alt, loaded: img.complete && img.naturalWidth > 0, fit: getComputedStyle(img).objectFit, ratio: img.getBoundingClientRect().width / img.getBoundingClientRect().height, originalRatio: Number(img.getAttribute('width')) / Number(img.getAttribute('height')) })));
-  assert.equal(imageInfo.length, 6, 'Three photographs and three logo instances');
+  const imageInfo = await page.locator('img:visible').evaluateAll(images => images.map(img => ({ alt: img.alt, loaded: img.complete && img.naturalWidth > 0, fit: getComputedStyle(img).objectFit, ratio: img.getBoundingClientRect().width / img.getBoundingClientRect().height, originalRatio: Number(img.getAttribute('width')) / Number(img.getAttribute('height')) })));
+  assert.equal(imageInfo.length, 9, 'Three photographs, three logo instances and three certificates');
   for (const image of imageInfo) {
     assert(image.loaded, `Image not loaded: ${image.alt}`);
     assert.equal(image.fit, 'contain', `Image cropped: ${image.alt}`);
@@ -59,7 +62,7 @@ catch { playwright = createRequire(process.env.PLAYWRIGHT_PACKAGE || 'C:/Users/j
   const faq = page.getByRole('button', { name: 'Como funciona o pagamento?' });
   await faq.click();
   assert.equal(await faq.getAttribute('aria-expanded'), 'true');
-  assert(await page.locator('#resposta-4').innerText().then(text => text.includes('R$ 300')));
+  await page.waitForFunction(() => document.querySelector('#resposta-4').innerText.includes('R$ 300'));
   await faq.click();
   assert.equal(await faq.getAttribute('aria-expanded'), 'false');
   await page.getByRole('tab', { name: 'Relacionamentos' }).click();

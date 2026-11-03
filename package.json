@@ -9,15 +9,16 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "^16.0.0",
+    "@vercel/analytics": "^2.0.1",
+    "bootstrap-icons": "^1.13.1",
+    "next": "^16.4.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "bootstrap-icons": "^1.13.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0"
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
   }
 }
