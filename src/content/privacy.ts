@@ -1,7 +1,7 @@
 import type { ContentStatus } from "@/lib/site-config";
 
 export const privacyContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   updated: "12 de novembro de 2026",
   sections: [
     { title: "Quem é responsável pelo site", paragraphs: ["Este site apresenta o trabalho de Ely Oliveira, terapeuta emocional, e seu atendimento online. Para dúvidas sobre privacidade ou solicitações relacionadas a dados pessoais, utilize o WhatsApp oficial +55 31 99777-9876.", "A identificação completa do responsável e o canal definitivo para privacidade serão confirmados na revisão desta política. Não é necessário enviar informações de saúde para esclarecer dúvidas sobre privacidade."] },

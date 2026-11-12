@@ -1,14 +1,14 @@
 import type { ContentStatus } from "@/lib/site-config";
 
 export const heroContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   heading: ["Um olhar cuidadoso", "para a sua história."],
   description: "Conheça uma trajetória marcada pelo acolhimento, pela perseverança e pelo desejo de ajudar outras pessoas.",
   cta: "Conversar com Ely",
 };
 
 export const aboutContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   title: "Minha história começou com o amor de mãe.",
   introduction: "Sou Ely Oliveira, terapeuta emocional, e minha caminhada até a TRG nasceu de uma experiência profundamente pessoal.",
   opening: [
@@ -36,7 +36,7 @@ export const aboutContent = {
 };
 
 export const trgContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   title: "Compreender a origem pode transformar o caminho.",
   description: "A Terapia de Reprocessamento Generativo propõe trabalhar experiências emocionais e compreender como elas podem estar relacionadas ao sofrimento vivido no presente.",
   detail: "Um processo de escuta e reprocessamento emocional que considera a história, as experiências e o ritmo de cada pessoa.",
@@ -46,7 +46,7 @@ export const trgContent = {
 };
 
 export const attendanceContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   title: "Atendimento online, com acolhimento e respeito à sua história.",
   paragraphs: [
     "O atendimento de Ely Oliveira é realizado 100% online, permitindo que você participe de um lugar reservado e confortável.",
@@ -71,7 +71,7 @@ export const qualificationsContent = {
 };
 
 export const faqContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   title: "Perguntas frequentes",
   introduction: "Um pouco mais de clareza para dar o próximo passo.",
   items: [
@@ -122,7 +122,7 @@ export const faqContent = {
 };
 
 export const footerContent = {
-  status: "draft" as ContentStatus,
+  status: "approved" as ContentStatus,
   heading: "O cuidado pode começar com uma conversa.",
   subheading: "Conheça o atendimento de Ely Oliveira e descubra como dar o próximo passo.",
   tagline: "Acolhimento, escuta e respeito à sua história.",
