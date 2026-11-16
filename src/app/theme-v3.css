@@ -1,0 +1,136 @@
+/* V3 changes presentation only; globals.css retains the layout and motion. */
+:root {
+  --ely-surface: #1f1c18;
+  --ely-surface-raised: #29251f;
+  --ely-surface-light: var(--ely-surface);
+  --ely-text: var(--ely-white);
+  --ely-text-secondary: var(--ely-champagne);
+  --ely-muted: #c5baa7;
+  --ely-title: var(--ely-gold);
+  --ely-border: rgba(198, 161, 91, .25);
+  --ely-border-strong: rgba(198, 161, 91, .58);
+  --ely-gold-on-white: #805e27;
+  --ely-menu-active: #f3ede1;
+  --ely-action-hover: #d7b77c;
+  --ely-focus: #e0bd7b;
+  --ely-shadow: rgba(0, 0, 0, .24);
+  --background: var(--ely-black);
+  --foreground: var(--ely-text);
+}
+
+body { background: var(--background); color: var(--foreground); }
+::selection { background: var(--ely-gold); color: var(--ely-black); }
+:focus-visible { outline-color: var(--ely-focus); }
+h1, h2 { color: var(--ely-title); }
+.section-label, .hero-kicker, .hero-description, .hero-note, .hero-discover { color: var(--ely-text-secondary); }
+.hero, .about-section, .trg-section, .attendance-section, .qualifications-section, .faq-section { background: var(--ely-black); }
+.about-section { border-top-color: var(--ely-border); background: linear-gradient(140deg, var(--ely-black), var(--ely-surface)); }
+.qualifications-section { background: linear-gradient(125deg, var(--ely-surface), var(--ely-black)); border-color: var(--ely-border); }
+.faq-section { border-top: 1px solid var(--ely-border); }
+
+/* A: solid gold titles. B: a single large outline, with a solid mobile fallback. */
+.hero h1 { width: 100%; color: var(--ely-title); }
+.hero-title-outline { color: var(--ely-title); }
+@supports (-webkit-text-stroke: 1px currentColor) {
+  .hero-title-outline { -webkit-text-fill-color: var(--ely-black); -webkit-text-stroke: 1.1px var(--ely-gold); paint-order: stroke fill; }
+}
+.trg-copy h2, .faq-heading h2 { color: var(--ely-white); }
+.text-gold, .faq-invitation h3 { color: var(--ely-gold); }
+.hero-composition { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: 24px; }
+.hero-copy { min-width: 0; }
+.hero-brand { width: 145px; }
+.hero-image-frame { position: relative; }
+.hero-outline { border-color: var(--ely-border-strong); bottom: 15px; }
+.hero-photo-caption { position: static; display: block; margin-top: 25px; padding: 0; background: none; box-shadow: none; font-family: var(--font-display); font-size: 29px; line-height: 1.2; color: var(--ely-gold); text-align: center; }
+.caption-line { display: block; width: 32px; margin: 0 auto 13px; }
+.hero-side-note { position: static; display: block; margin-top: 13px; color: var(--ely-muted); text-align: center; font-size: 11px; }
+
+/* Photographs remain unchanged. Captions and editorial quotations follow them. */
+.about-portrait { aspect-ratio: auto; overflow: visible; border-radius: 0; background: transparent; }
+.about-photo { position: relative; aspect-ratio: .84; overflow: hidden; border: 1px solid var(--ely-border); border-radius: 4px 4px 100px 4px; }
+.about-portrait figcaption { position: static; padding: 22px 0 0; background: none; color: var(--ely-gold); }
+.about-portrait figcaption span + span { color: var(--ely-text-secondary); font-size: 12px; }
+.portrait-note { position: static; max-width: 27ch; margin: 25px 0 0 22px; padding: 0; background: none; color: var(--ely-gold); font-size: 28px; line-height: 1.25; }
+.about-copy > p, .story-rest > p { color: var(--ely-text-secondary); }
+.about-copy .story-introduction { color: var(--ely-white); }
+/* C: one framed quotation, rather than a box around every heading. */
+.story-rest blockquote { padding: 25px; border: 1px solid var(--ely-border-strong); border-radius: 4px; background: var(--ely-surface); color: var(--ely-gold); }
+.story-rest .story-signature { color: var(--ely-gold); }
+.trg-copy p, .trg-copy .trg-description { color: var(--ely-text-secondary); }
+.trg-copy .light-link { min-height: 50px; padding: 12px 22px; border: 1px solid var(--ely-gold); border-radius: 99px; background: var(--ely-gold); color: var(--ely-black); }
+.online-tag, .qualification-icon, .faq-symbol { color: var(--ely-gold); }
+.attendance-detail, .attendance-copy > p, .attendance-invitation p, .qualifications-layout > div > p, .course-meta, .qualification p, .faq-heading p, .faq-answer, .faq-invitation p { color: var(--ely-text-secondary); }
+.attendance-copy strong { color: var(--ely-gold); }
+.attendance-invitation h3, .qualification h3 { color: var(--ely-white); }
+.qualification, .qualification:last-of-type { border-color: var(--ely-border-strong); }
+.faq-item h3 button { color: var(--ely-white); }
+.faq-toggle { color: var(--ely-gold); border-color: var(--ely-border-strong); }
+.faq-item[data-open="true"] .faq-toggle { background: var(--ely-surface-raised); border-color: var(--ely-gold); }
+.faq-item[data-open="true"] h3 button { color: var(--ely-gold); }
+
+.contact-button, .dark-button { border-color: var(--ely-gold); background: var(--ely-gold); color: var(--ely-black); }
+.button-arrow { border-color: rgba(23, 23, 23, .4); color: var(--ely-black); }
+.contact-button-light, .plain-button:not(.dark-button) { background: transparent; border-color: var(--ely-border-strong); color: var(--ely-gold); }
+.contact-button-light .button-arrow { color: var(--ely-gold); border-color: var(--ely-border-strong); }
+.text-link { color: var(--ely-gold); }
+
+/* White navigation with a darker derivative of gold for AA text contrast. */
+.desktop-dock, .dock-label, .mobile-dock, .mobile-sections { background: var(--ely-white); color: var(--ely-gold-on-white); border-color: var(--ely-border-strong); box-shadow: 0 12px 36px var(--ely-shadow); }
+.dock-item, .dock-label, .dock-whatsapp { color: var(--ely-gold-on-white); }
+.dock-item[aria-current] { background: var(--ely-menu-active); color: var(--ely-gold-on-white); box-shadow: inset 0 0 0 1px var(--ely-border-strong); }
+.dock-item[aria-current]::after { background: var(--ely-gold-on-white); }
+.desktop-dock :focus-visible, .mobile-navigation :focus-visible { outline-color: var(--ely-gold-on-white); }
+.mobile-dock > [aria-current], .mobile-dock > .mobile-talk, .mobile-sections [aria-current], .mobile-sections > a > svg:last-child { color: var(--ely-gold-on-white); }
+.mobile-dock > [aria-current] { background: var(--ely-menu-active); }
+.mobile-dock > [aria-current] > span { text-decoration: underline; text-underline-offset: 3px; }
+.mobile-dock > a, .mobile-dock > button { font-size: 10px; }
+.mobile-sections > a { border-bottom-color: var(--ely-border); }
+
+/* Same consent controls and categories, restyled for the dark interface. */
+.cookie-banner, .cookie-dialog { background: var(--ely-surface); color: var(--ely-white); border-color: var(--ely-border-strong); }
+.cookie-heading { color: var(--ely-gold); }
+.cookie-heading h2 { color: var(--ely-white); }
+.cookie-banner p, .cookie-dialog > p, .preference-row p, .preference-description, .essential-tag { color: var(--ely-text-secondary); }
+.cookie-banner p a, .cookie-customize, .privacy-policy-link { color: var(--ely-gold); }
+.cookie-actions button { color: var(--ely-black); background: var(--ely-white); border-color: var(--ely-white); }
+.icon-button { color: var(--ely-gold); border-color: var(--ely-border-strong); }
+.switch { background: var(--ely-surface-raised); border-color: var(--ely-border-strong); }
+.switch::after { background: var(--ely-champagne); }
+.preference-row input:checked + .switch { background: var(--ely-gold); }
+.preference-row input:checked + .switch::after { background: var(--ely-black); }
+.preference-row input:focus-visible + .switch { outline-color: var(--ely-focus); }
+
+.mrf-scene { background: linear-gradient(var(--mrf-sky-start) 10%, var(--mrf-sky-end) 55%, var(--mrf-ground)); }
+.mrf-hero .section-label { color: var(--ely-text-secondary); }
+.privacy-top > a:first-child { width: 145px; }
+.privacy-article section p, .privacy-date, .policy-sources { color: var(--ely-text-secondary); }
+.privacy-article a:not(.plain-button) { color: var(--ely-gold); text-decoration: underline; text-underline-offset: 4px; }
+.not-found p { color: var(--ely-text-secondary); }
+
+@media (hover: hover) and (pointer: fine) {
+  .dock-item:hover { color: var(--ely-gold-on-white); }
+  .contact-button:hover, .dark-button:hover, .trg-copy .light-link:hover { background: var(--ely-action-hover); color: var(--ely-black); box-shadow: 0 6px 22px var(--ely-shadow); }
+  .contact-button-light:hover, .plain-button:not(.dark-button):hover { background: var(--ely-surface-raised); color: var(--ely-gold); }
+  .qualification:hover { border-color: var(--ely-gold); }
+  .cookie-actions button:hover { background: var(--ely-champagne); color: var(--ely-black); }
+}
+@media (max-width: 800px) {
+  .hero-title-outline { -webkit-text-fill-color: var(--ely-gold); -webkit-text-stroke: 0; }
+  .hero-brand { width: 130px; }
+  .hero-photo-caption { font-size: 27px; }
+  .portrait-note { margin-left: 0; font-size: 25px; }
+}
+@media (max-width: 600px) {
+  .hero-composition { gap: 0; }
+  .hero-brand { width: 120px; }
+  .hero-visual { width: 90%; margin-top: 15px; }
+  .hero-outline { bottom: 15px; }
+  .hero-photo-caption { margin-top: 25px; padding: 0; font-size: 28px; }
+  .hero-side-note { display: block; font-size: 11px; }
+  .about-photo { aspect-ratio: .85; border-bottom-right-radius: 65px; }
+  .about-portrait { width: 88%; aspect-ratio: auto; }
+  .about-portrait figcaption { padding: 20px 0 0; }
+  .portrait-note { margin: 23px 0 0 3px; max-width: 26ch; font-size: 26px; }
+  .story-rest blockquote { padding: 21px; font-size: 28px; }
+  .cookie-banner { right: auto; }
+}

@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 for (const deviceName of ["Pixel 7"] as const) {
   test(`navegação por toque em ${deviceName}`, async ({ browser }) => {
-    const context = await browser.newContext({ ...devices[deviceName], baseURL: "http://127.0.0.1:3100" });
+    const context = await browser.newContext({ ...devices[deviceName], baseURL: process.env.TEST_BASE_URL || "http://127.0.0.1:3100" });
     try {
       const page = await context.newPage();
       const errors: string[] = []; page.on("pageerror", error => errors.push(error.message));
@@ -28,7 +28,7 @@ test("reflow equivalente a 200% em um monitor de 1440px", async ({ browser }) =>
   // 2x device scale to verify this layout without simulating pinch-to-zoom.
   const context = await browser.newContext({ viewport: { width: 720, height: 500 }, deviceScaleFactor: 2 });
   try {
-    const page = await context.newPage(); await page.goto("http://127.0.0.1:3100");
+    const page = await context.newPage(); await page.goto(process.env.TEST_BASE_URL || "http://127.0.0.1:3100");
     await page.getByRole("button", { name: "Rejeitar opcionais", exact: true }).first().click();
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
     await page.getByRole("button", { name: "Seções", exact: true }).click();

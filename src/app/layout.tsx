@@ -3,6 +3,7 @@ import "@fontsource-variable/cormorant-garamond";
 import "@fontsource-variable/cormorant-garamond/wght-italic.css";
 import "@fontsource-variable/montserrat";
 import "./globals.css";
+import "./theme-v3.css";
 import { siteConfig, isReview } from "@/lib/site-config";
 import { CookiePreferences } from "@/components/site/CookiePreferences";
 import { AnalyticsGate } from "@/components/site/AnalyticsGate";
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: siteConfig.title, description: siteConfig.description },
   robots: isReview ? { index: false, follow: false } : { index: true, follow: true },
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#F8F5F0" };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#171717" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="pt-BR"><body><a className="skip-link" href="#conteudo">Pular para o conteúdo</a>{children}<CookiePreferences /><AnalyticsGate /></body></html>;
